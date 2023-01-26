@@ -1,0 +1,14 @@
+Django
+django-dbbackup
+django-extensions
+django-model-utils
+django-jazzmin
+djangorestframework
+drf-yasg
+graphviz
+gunicorn
+psycopg2-binary
+pyTelegramBotAPI
+python-dateutil
+python-memcached
+Pillow

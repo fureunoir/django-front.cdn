@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  django:
+    restart: always
+    build: .
+    command: >
+      sh -c "python manage.py await_db &&
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      .env
+
+volumes:
+  postgres_data:
